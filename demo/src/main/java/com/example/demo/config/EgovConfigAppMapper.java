@@ -22,7 +22,7 @@ public class EgovConfigAppMapper {
 		PathMatchingResourcePatternResolver pathMatchingResourcePatternResolver = new PathMatchingResourcePatternResolver();
 
 		sqlSessionFactoryBean.setConfigLocation(pathMatchingResourcePatternResolver
-				.getResource("classpath:/com/example/mapper/demo/config/mapper-config.xml"));
+				.getResource("classpath:/com/example/mapper/config/mapper-config.xml"));
 
 		sqlSessionFactoryBean.setMapperLocations(
 				pathMatchingResourcePatternResolver.getResources("classpath:/com/example/mapper/demo/**/*_mysql.xml"));

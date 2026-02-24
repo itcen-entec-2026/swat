@@ -5,16 +5,17 @@
 
 	<select id="selectAaaList"
 		parameterType="com.example.demo.a.a.a.service.AaaVo"
-		resultType="com.example.demo.a.a.a.service.AaaVo">
+		resultType="com.example.demo.a.a.a.service.AaaVo" timeout="10">
 <![CDATA[
-SELECT /* AaaMapper.selectAaaList */
-       CODE_ID
-     , CODE
-     , CODE_NM
-     , CODE_DC
-  FROM LETTCCMMNDETAILCODE
- WHERE USE_AT = 'Y'
-   AND CODE_ID = #{codeId}
+SELECT /* AaaMapper.selectAaaList 에이 에이 에이 조회(멀티건) */
+       A.CODE_ID
+     , A.CODE
+     , A.CODE_NM
+     , A.CODE_DC
+     , SLEEP(2)
+  FROM LETTCCMMNDETAILCODE A
+ WHERE A.USE_AT = 'Y'
+   AND A.CODE_ID = #{codeId}
 ]]>
 	</select>
 

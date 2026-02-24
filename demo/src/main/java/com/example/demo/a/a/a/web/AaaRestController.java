@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 
+ * 에이 에이 에이 RestController
  */
 @RestController
 @RequestMapping("/api/v1/aaa")
@@ -25,37 +25,32 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AaaRestController {
 
-	/**
-	 * 
-	 */
 	private final AaaService aaaService;
 
-	/**
-	 * 
-	 */
 	private final HikariDataSource hikariDataSource;
 
 	/**
+	 * 에이 에이 에이 조회(멀티건)
 	 * 
 	 * @param aaaVo
 	 * @return
 	 */
 	@GetMapping
 	public ResponseEntity<List<AaaVo>> selectAaaList(AaaVo aaaVo) {
-		if (log.isDebugEnabled()) {
-			log.debug("aaaVo={}", aaaVo);
+		if (log.isInfoEnabled()) {
+			log.info("aaaVo={}", aaaVo);
+			log.info("getCodeId={}", aaaVo.getCodeId());
 
-			log.debug("hikariDataSource={}", hikariDataSource);
-			log.debug("getMaximumPoolSize={}", hikariDataSource.getMaximumPoolSize());
+			log.info("hikariDataSource={}", hikariDataSource);
+			log.info("getMaximumPoolSize={}", hikariDataSource.getMaximumPoolSize());
 		}
 
 		if (ObjectUtils.isEmpty(aaaVo.getCodeId())) {
 //			aaaVo.setCodeId("COM001");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-		} else {
-			return ResponseEntity.ok(aaaService.selectAaaList(aaaVo));
-
 		}
+
+		return ResponseEntity.ok(aaaService.selectAaaList(aaaVo));
 	}
 
 }
