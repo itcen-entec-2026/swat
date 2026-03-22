@@ -117,13 +117,26 @@ public class SecurityConfig {
 	protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 		return http.csrf(AbstractHttpConfigurer::disable)
-				.authorizeHttpRequests(authorize -> authorize.requestMatchers("/admin/**").hasRole("ADMIN") // 관리자 페이지는
-																											// ADMIN만 접근
+
+				.authorizeHttpRequests(authorize ->
+
+				authorize.requestMatchers("/admin/**").hasRole("ADMIN") // 관리자 페이지는 ADMIN만 접근
+
 						.requestMatchers("/members/**").hasRole("ADMIN") // 회원 관리는 ADMIN만 접근
 						.requestMatchers("/mypage/**").hasAnyRole("ADMIN", "USER") // 마이페이지는 ADMIN, USER 모두 접근
 						.requestMatchers("/inform/**").hasAnyRole("ADMIN", "USER") // 게시판은 ADMIN, USER 모두 접근
-						.requestMatchers(AUTH_WHITELIST).permitAll().requestMatchers(HttpMethod.GET, AUTH_GET_WHITELIST)
-						.permitAll().anyRequest().authenticated())
+
+						.requestMatchers(AUTH_WHITELIST).permitAll()
+
+						.requestMatchers(HttpMethod.GET, AUTH_GET_WHITELIST).permitAll()
+
+						// 메인 화면 리스트 조회
+						.requestMatchers(HttpMethod.POST, "/mainPage").permitAll()
+
+						.anyRequest().authenticated()
+
+				)
+
 				.sessionManagement(
 						sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.securityContext(securityContext -> securityContext
