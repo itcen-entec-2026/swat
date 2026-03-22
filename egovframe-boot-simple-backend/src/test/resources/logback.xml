@@ -1,0 +1,17 @@
+<configuration>
+
+	<property name="LOG_LEVEL" value="DEBUG" />
+
+	<appender name="CONSOLE"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>[%level] %d{HH:mm:ss} %logger - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="egovframework" level="${LOG_LEVEL}" />
+
+	<root level="INFO">
+		<appender-ref ref="CONSOLE" />
+	</root>
+</configuration>
